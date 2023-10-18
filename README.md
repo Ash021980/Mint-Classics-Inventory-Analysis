@@ -204,3 +204,32 @@ FROM
 <b>Results</b>
 
 ![Image](MintClassicsWarehouseCust.png)
+
+Lastly, I want to look at where, country-wise, our customers are located.  This data
+will be helpful in discovering how to best redistribute our products.  Merging the orders
+and 'customers' table with an inner join is the route I'll take.  I only want to look at 
+customers who have placed an order.  For each country, I want to know how many customers
+are located there and what is that percentage-wise.
+
+Less than 9% of our customers should be affected by closing the South warehouse.
+Locating which products are more popular by location and ensuring there is a regular
+supply at the 2 closest warehouses should keep shipping times close to current levels
+if not improve them by having an efficient logistics process.
+
+<b>SQL Query</b><br>
+<pre>SELECT 
+    c.country,
+    COUNT(DISTINCT o.customerNumber) AS customerCnt,
+    ROUND((COUNT(DISTINCT o.customerNumber) / 98),
+            2) AS customerPct
+FROM
+    orders o
+        INNER JOIN
+    customers c ON c.customerNumber = o.customerNumber
+GROUP BY c.country
+ORDER BY customerCnt DESC;
+</pre>
+<br>
+<b>Results</b>
+
+![Image](MintClassicsCustomers.png)
