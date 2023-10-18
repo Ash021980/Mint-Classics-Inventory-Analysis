@@ -235,18 +235,18 @@ ORDER BY customerCnt DESC;
 ![Image](MintClassicsCustomers.png)
 
 ## Recommendations
-<b>1. Closure of the South warehouse</b>
+<b>1. Closure of the South warehouse</b><br>
    The South warehouse is the best candidate for closure.  With its lower inventory capacity and location of customers, products can be reassigned
    to the remaining warehouses based on the previous customer orders.  Delivery times will be minimally affected.
 
-<b>2. Create an Inventory Management System</b> 
+<b>2. Create an Inventory Management System</b><br> 
    An Inventory Management Process should be implemented based on current inventory levels and the amount of units sold for each product.  There are
    numerous products that we do not have the sales figures to support the amount kept in inventory.  Several of the best-selling items have less than
    20% stock remaining.  Adjusting the maximum inventory levels necessary for each product should allow for the space needed to redistribute
    products to maintain current shipping standards.  Adjusting the minimum inventory levels, ie. reorder threshold of 30%, allows for proper restocking
    of items as dictated by sales.
    
-<b>4. Collaborate with Marketing, Sales, and Procurement Teams</b>
+<b>3. Collaborate with Marketing, Sales, and Procurement Teams</b><br>
    The marketing and sales teams should be consulted to devise a course of action to trim current stock levels.  More warehouse space will be available
    for products that sell while decreasing overhead and product hold times.  Procuring more stock of products we sell the most based on proper inventory
    par levels while not ordering and storing stock that isn't as popular.
