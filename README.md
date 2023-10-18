@@ -43,7 +43,8 @@ The South warehouse appears to be the best candidate for closing.<br>
 There is more than enough space at the West 
 warehouse, which is running at half capacity, with room for @120k items.  The
 North and East warehouses have 28% and 33% available space as well.<br>
-<b>SQL Query</b>
+<b>SQL Query</b><br>
+<pre>
 WITH wareprod_tbl  AS
 (SELECT
     w.warehouseCode,
@@ -99,6 +100,6 @@ FROM wareprod_tbl wp
         LEFT JOIN
 	 wrkord_tbl wo ON wp.warehouseCode = wo.warehouseCode
 ORDER BY wo.totalSales DESC;
-
+</pre>
 <b>Results<b/><br>
-![Image](MintClassicsWarehouseInv.png)
+![Image](MintClassicsWarehouseInv.PNG)
