@@ -40,8 +40,65 @@ The South warehouse appears to be the best candidate for closing.<br>
 - Least total storage capacity(105,840)
 - Filled the least number of orders(22,351)
 - Only accounts for 20% of total sales.
-<br>
 There is more than enough space at the West 
 warehouse, which is running at half capacity, with room for @120k items.  The
-North and East warehouses have 28% and 33% available space as well.
+North and East warehouses have 28% and 33% available space as well.<br>
+<b>SQL Query</b>
+WITH wareprod_tbl  AS
+(SELECT
+    w.warehouseCode,
+    w.warehouseName,
+    w.warehousePctCap,
+    p.itemsInStock,
+    p.productCnt,
+    p.productLineCnt
+FROM
+    warehouses w
+        INNER JOIN
+    (SELECT 
+        warehouseCode,
+        SUM(quantityinStock) AS itemsInStock,
+        COUNT(productCode) AS productCnt,
+        COUNT(DISTINCT productLine) AS productLineCnt
+    FROM
+        products
+    GROUP BY warehouseCode) AS p ON p.warehouseCode = w.warehouseCode
+ORDER BY p.itemsInStock),
+wrkord_tbl AS
+(SELECT
+    warehouseCode,
+    warehouseName,
+    warehousePctCap,
+    SUM(quantityOrdered) AS itemsOrdered,
+    SUM(lineTotal) AS totalSales
+FROM
+    (SELECT 
+        o.orderNumber,
+            o.productCode,
+            p.warehouseCode,
+            w.warehouseName,
+            w.warehousePctCap,
+            o.quantityOrdered,
+            o.priceEach,
+            (o.quantityOrdered * o.priceEach) AS lineTotal
+    FROM
+        orderdetails o
+    LEFT JOIN products p ON o.productCode = p.productCode
+    LEFT JOIN warehouses w ON p.warehouseCode = w.warehouseCode) AS wrk_table
+GROUP BY warehouseCode, warehouseName, warehousePctCap)
+SELECT
+    wp.warehouseName,
+    wp.warehousePctCap,
+    ROUND((wp.itemsInStock / (wp.warehousePctCap / 100)), 0) AS warehouseCap,
+    (ROUND((wp.itemsInStock / (wp.warehousePctCap / 100)), 0) - wp.itemsInStock) AS freeSpace,
+    wp.itemsInStock,
+    wo.itemsOrdered,
+    wo.totalSales,
+    ROUND((wo.totalSales / 9604190.61), 2) AS pctTotalSales
+FROM wareprod_tbl wp
+        LEFT JOIN
+	 wrkord_tbl wo ON wp.warehouseCode = wo.warehouseCode
+ORDER BY wo.totalSales DESC;
 
+<b>Results<b/><br>
+![Image]()
