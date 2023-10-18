@@ -22,7 +22,7 @@ As a data analyst, I have been asked to use MySQL Workbench to familiarize mysel
 
 My challenge will be to conduct an exploratory data analysis to investigate any patterns or themes that may influence the reduction or reorganization of inventory in the Mint Classics storage facilities. To do this, I will import the database and then analyze the data. I will also pose questions, and seek to answer them meaningfully using SQL queries to retrieve data from the database provided.
 
-### Database
+## Database
 
 Database SQL creation script provided and can be seen [here](https://github.com/Ash021980/Mint-Classics-Inventory-Analysis/blob/main/Kk6HcEYrS-23P-RaCeFG2Q_8cc95a70f07644cc9cba5af99ad5b1f1_mintclassicsDB.sql).
 
