@@ -105,7 +105,7 @@ ORDER BY wo.totalSales DESC;
 <br>
 <b>Results<b/><br>
 ![Image](MintClassicsWarehouseInv.PNG)
-
+<br>
 <b>2. Do the inventory counts seem appropriate for each item?</b><br>
 
 There are signs that current inventory management processes should be improved upon.
