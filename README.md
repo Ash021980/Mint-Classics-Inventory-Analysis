@@ -164,5 +164,6 @@ ORDER BY totalSales DESC, pctOrdered DESC;
 -- LIMIT 10;
 </pre>
 <br>
-<b>Results</b><br>
-![Image](MintClassicsProducts.PNG)
+<b>Results</b>
+
+![Image](MintClassicsProducts.png)
