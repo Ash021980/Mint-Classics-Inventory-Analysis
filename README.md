@@ -251,6 +251,7 @@ ORDER BY customerCnt DESC;
    for products that sell while decreasing overhead and product hold times.  Procuring more stock of products we sell the most based on proper inventory
    par levels while not ordering and storing stock that isn't as popular.<br>
    <br>
+   <b>Examples:</b><br>
    1. Using profit margin percentages, run a promotion/sale to reduce/eliminate our excess inventory.
    2. Establish a customer rewards program based on the number of orders placed in the last year, the length of membership, or the  total amount spent.
    3. Perform a deep analysis to include which model cars sell in locations to optimize inventory levels and delivery times.
