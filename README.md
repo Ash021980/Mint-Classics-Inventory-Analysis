@@ -179,6 +179,7 @@ have less than 20% left in stock.  The marketing and sales teams should be consu
 a course of action to trim current stock levels, as we phase out products, and procure 
 more stock of the best-selling products.
 
+<b>SQL Query</b><br>
 <pre>
 SELECT 
     warehouseName,
