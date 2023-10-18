@@ -167,3 +167,39 @@ ORDER BY totalSales DESC, pctOrdered DESC;
 <b>Results</b>
 
 ![Image](MintClassicsProducts.png)
+
+<b>3. How many customers are serviced by each warehouse?</b><br>
+
+  The current warehousing process has various warehouses servicing the same customers.
+Closing the South warehouse would affect 81 customers.  Properly redistributing our current
+inventory to the remaining warehouses would have a minimal impact on shipping times.  The 
+inventory par, minimum, and maximum stock levels should be implemented.  There are 
+several products with over 60% of their inventory remaining while some of our best sellers 
+have less than 20% left in stock.  The marketing and sales teams should be consulted to devise
+a course of action to trim current stock levels, as we phase out products, and procure 
+more stock of the best-selling products.
+
+<pre>
+SELECT 
+    warehouseName,
+    totalCustomers,
+    ROUND((totalCustomers / 98), 2) AS customerPct
+FROM
+    (SELECT 
+        warehouseName,
+            COUNT(DISTINCT customerNumber) AS totalCustomers
+    FROM
+        (SELECT 
+        o.customerNumber, w.warehouseName
+    FROM
+        orders o
+    LEFT JOIN orderdetails od ON o.orderNumber = od.orderNumber
+    LEFT JOIN products p ON od.productCode = p.productCode
+    LEFT JOIN warehouses w ON p.warehouseCode = w.warehouseCode) cust_ware
+    GROUP BY warehouseName
+    ORDER BY totalCustomers DESC) agg_tbl;
+</pre>
+<br>
+<b>Results</b>
+
+![Image]()
