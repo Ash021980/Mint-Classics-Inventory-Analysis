@@ -103,7 +103,7 @@ FROM wareprod_tbl wp
 ORDER BY wo.totalSales DESC;
 </pre>
 <br>
-<b>Results<b/>
+<b>Results</b>
 	
 ![Image](MintClassicsWarehouseInv.PNG)
 
