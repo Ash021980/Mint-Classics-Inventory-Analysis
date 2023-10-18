@@ -29,3 +29,13 @@ Database SQL creation script provided and can be seen [here](https://github.com/
 ### EER(Extended Entity-Relationship) diagram
 
 ![Image](MintClassicsDataModel.png)
+
+## Conclusions
+
+<b>1. Where are products stored?</b>
+
+   The South warehouse initially appears to be the best candidate for closing.
+It has the least amount of total inventory(79,380), its also has the smallest
+capacity available(75% full).  There is more than enough space at the West 
+warehouse, which is running at half capacity, room for @120k items.  The North
+and East warehouses have 28% and 33% available space as well.
