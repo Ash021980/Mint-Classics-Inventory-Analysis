@@ -43,6 +43,7 @@ The South warehouse appears to be the best candidate for closing.<br>
 There is more than enough space at the West 
 warehouse, which is running at half capacity, with room for @120k items.  The
 North and East warehouses have 28% and 33% available space as well.<br>
+
 <b>SQL Query</b><br>
 <pre>
 WITH wareprod_tbl  AS
@@ -101,5 +102,66 @@ FROM wareprod_tbl wp
 	 wrkord_tbl wo ON wp.warehouseCode = wo.warehouseCode
 ORDER BY wo.totalSales DESC;
 </pre>
+<br>
 <b>Results<b/><br>
 ![Image](MintClassicsWarehouseInv.PNG)
+
+<b>2. Do the inventory counts seem appropriate for each item?</b><br>
+
+There are signs that current inventory management processes should be improved upon.
+Ex. Adjusting par levels for products and discontinuing products that do not sell.<br>
+- 4 products with 15% or less of their stock remaining
+- 10 products with 45% or less of their stock remaining
+- 17 products have had 10% or less of their stock ordered
+
+Looking at the top 10 products by sales:<br>
+- 1 product has only 7% of stock remaining
+- 1 product has 52% of stock remaining
+- 8 products have 75% or more of their stock remaining
+
+Looking at the top 10 products by quantity ordered:<br>
+- 1 product has 69% of its stock remaining
+- 1 product has 75% of its stock remaining
+- 8 products have 82% or more of their stock remaining
+
+<b>SQL Query</b><br>
+<pre>
+SELECT 
+    pw.productName,
+    pw.warehouseName,
+    pw.itemsInStock,
+    o.qtyOrdered,
+    ROUND((o.qtyOrdered / (pw.itemsInStock + o.qtyOrdered)), 2) AS pctOrdered,
+    (1 - ROUND((o.qtyOrdered / (pw.itemsInStock + o.qtyOrdered)), 2)) AS pctRemaining,
+    o.totalSales,
+    ROUND((o.totalSales / 9604190.61), 2) AS pctTotalSales,
+    pw.buyPrice,
+    ROUND((o.totalSales / o.qtyOrdered), 2) AS avgItemPrice,
+    ROUND((((o.totalSales / o.qtyOrdered) / pw.buyPrice) - 1), 2) AS avgMarginPct
+FROM
+    (SELECT 
+        p.productCode,
+            p.productName,
+            p.warehouseCode,
+            w.warehouseName,
+            SUM(p.quantityInStock) AS itemsInStock,
+            p.buyPrice
+    FROM
+        products p
+    LEFT JOIN warehouses w ON p.warehouseCode = w.warehouseCode
+    GROUP BY p.warehouseCode, p.productCode, p.productName, w.warehouseName, p.buyPrice) pw
+        LEFT JOIN
+    (SELECT 
+        productCode,
+            SUM(quantityOrdered) AS qtyOrdered,
+            SUM((quantityOrdered * priceEach)) AS totalSales
+    FROM
+        orderdetails
+    GROUP BY productCode) o ON pw.productCode = o.productCode
+-- WHERE warehouseName = 'South'
+ORDER BY totalSales DESC, pctOrdered DESC;
+-- LIMIT 10;
+</pre>
+<br>
+<b>Results</b><br>
+![Image]()
