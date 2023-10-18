@@ -28,4 +28,4 @@ Database SQL creation script provided and can be seen [here](https://github.com/
 
 ### EER(Extended Entity-Relationship) diagram
 
-![Image]()
+![Image](MintClassicsDataModel.png)
