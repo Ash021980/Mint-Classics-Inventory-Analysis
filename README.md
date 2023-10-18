@@ -35,11 +35,11 @@ Database SQL creation script provided and can be seen [here](https://github.com/
 <b>1. Where are products stored?</b><br>
 
 The South warehouse appears to be the best candidate for closing.<br> 
--- Least amount of total inventory(79,380)
--- Smallest capacity available(75% full)
--- Least total storage capacity(105,840)
--- Filled the least number of orders(22,351)
--- Only accounts for 20% of total sales.
+- Least amount of total inventory(79,380)
+- Smallest capacity available(75% full)
+- Least total storage capacity(105,840)
+- Filled the least number of orders(22,351)
+- Only accounts for 20% of total sales.
 <br>
 There is more than enough space at the West 
 warehouse, which is running at half capacity, with room for @120k items.  The
