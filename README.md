@@ -103,9 +103,10 @@ FROM wareprod_tbl wp
 ORDER BY wo.totalSales DESC;
 </pre>
 <br>
-<b>Results<b/><br>
+<b>Results<b/>
+	
 ![Image](MintClassicsWarehouseInv.PNG)
-<br>
+
 <b>2. Do the inventory counts seem appropriate for each item?</b><br>
 
 There are signs that current inventory management processes should be improved upon.
@@ -164,4 +165,4 @@ ORDER BY totalSales DESC, pctOrdered DESC;
 </pre>
 <br>
 <b>Results</b><br>
-![Image]()
+![Image](MintClassicsProducts.PNG)
